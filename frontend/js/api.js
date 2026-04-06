@@ -1,6 +1,6 @@
 const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
     ? 'http://localhost:5000/api' 
-    : 'https://your-backend-render-url.onrender.com/api'; // Replace with yours later
+    : 'https://apple-products-management-system.onrender.com/api';
 
 async function fetchProducts(queryParams = '') {
     const res = await fetch(`${API_URL}/products${queryParams}`);
