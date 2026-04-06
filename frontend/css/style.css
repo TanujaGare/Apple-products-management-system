@@ -1,0 +1,386 @@
+/* Global Styles */
+:root {
+    --apple-primary: #000000;
+    --apple-secondary: #fbfbfd;
+    --apple-blue: #0066cc;
+    --apple-gray: #f5f5f7;
+    --apple-text: #1d1d1f;
+    --apple-light-text: #86868b;
+    --apple-border: #d2d2d7;
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-family);
+}
+
+body {
+    background-color: var(--apple-secondary);
+    color: var(--apple-text);
+    line-height: 1.5;
+}
+
+/* Header */
+header {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: saturate(180%) blur(20px);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    border-bottom: 1px solid var(--apple-border);
+}
+
+.header-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--apple-primary);
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--apple-text);
+    margin-left: 20px;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    transition: color 0.3s ease;
+}
+
+nav a:hover, nav a.active {
+    color: var(--apple-blue);
+}
+
+#user-menu-btn {
+    position: relative;
+}
+
+#user-dropdown {
+    min-width: 120px;
+    right: 0;
+    top: 25px;
+    display: none;
+    background: white;
+    border: 1px solid var(--apple-border);
+    border-radius: 12px;
+    padding: 8px 0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    z-index: 1001;
+    overflow: hidden;
+}
+
+#user-dropdown a {
+    margin: 0;
+    padding: 8px 16px;
+    font-size: 13px;
+    color: var(--apple-text);
+    display: block;
+    transition: background 0.2s;
+}
+
+#user-dropdown a:hover {
+    background: var(--apple-gray);
+    color: var(--apple-blue);
+}
+
+/* Main Container */
+.store-container, .admin-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 60px 0;
+}
+
+.hero h2 {
+    font-size: 48px;
+    font-weight: 600;
+    letter-spacing: -0.003em;
+}
+
+.hero h2 span {
+    color: var(--apple-light-text);
+}
+
+.search-bar {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.search-bar input {
+    padding: 12px 20px;
+    border-radius: 20px;
+    border: 1px solid var(--apple-border);
+    width: 300px;
+    font-size: 16px;
+    outline: none;
+}
+
+/* Buttons */
+button {
+    cursor: pointer;
+    font-family: var(--font-family);
+    transition: all 0.3s ease;
+}
+
+.btn-primary, #search-btn {
+    background-color: var(--apple-blue);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.btn-primary:hover, #search-btn:hover {
+    background-color: #005bb5;
+}
+
+.btn-secondary {
+    background-color: var(--apple-gray);
+    color: var(--apple-text);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 16px;
+}
+
+.btn-secondary:hover {
+    background-color: #e8e8ed;
+}
+
+/* Product Grid */
+.products {
+    margin-top: 40px;
+}
+
+.products h3 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+/* Product Card */
+.product-card {
+    background: white;
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-card .category {
+    font-size: 12px;
+    color: #bf4800; /* Apple's new color for tags */
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.product-card h4 {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 10px 0;
+}
+
+.product-card .price {
+    font-size: 18px;
+    color: var(--apple-text);
+    margin-bottom: 20px;
+}
+
+.product-card .add-to-cart {
+    width: 100%;
+}
+
+.product-card .out-of-stock {
+    color: red;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Admin Dashboard */
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.inventory-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+}
+
+.inventory-table th, .inventory-table td {
+    padding: 15px 20px;
+    text-align: left;
+    border-bottom: 1px solid var(--apple-border);
+}
+
+.inventory-table th {
+    background-color: var(--apple-gray);
+    font-weight: 500;
+}
+
+.inventory-table tr:last-child td {
+    border-bottom: none;
+}
+
+.alert-box {
+    background-color: #fce4e4;
+    border-left: 5px solid red;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    color: #cc0000;
+}
+
+/* Form Modals */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 40px;
+    border-radius: 18px;
+    width: 400px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* Status Badges */
+.status-badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+.status-pending {
+    background-color: #fff4e5;
+    color: #ff9500;
+}
+
+.status-completed {
+    background-color: #e5f9e5;
+    color: #34c759;
+}
+
+.status-cancelled {
+    background-color: #ffe5e5;
+    color: #ff3b30;
+}
+
+/* Admin Tabs */
+.admin-welcome {
+    margin-bottom: 40px;
+}
+
+.admin-welcome h2 {
+    font-size: 32px;
+}
+
+.admin-welcome p {
+    color: var(--apple-light-text);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--apple-border);
+    border-radius: 8px;
+    font-family: var(--font-family);
+}
+
+.close-btn {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+footer {
+    text-align: center;
+    padding: 40px 0;
+    color: var(--apple-light-text);
+    font-size: 12px;
+    border-top: 1px solid var(--apple-border);
+    margin-top: 60px;
+}
+
+/* Cart Item Layout */
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    background: white;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    align-items: center;
+}
+
+/* Order Item Layout */
+.order-card {
+    background: white;
+    padding: 20px;
+    border-radius: 18px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+}
+
+.order-items-list {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
