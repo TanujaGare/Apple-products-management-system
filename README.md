@@ -1,5 +1,7 @@
 # Apple Product Management System
 
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen)](https://apple-products-management-system.vercel.app)
+
 This is a full-stack, database-centric web application demonstrating MongoDB relationships, CRUD operations, and an Apple-inspired modern UI. It uses Node.js, Express, Mongoose, and a Vanilla HTML/CSS/JS frontend.
 
 ## Requirements
