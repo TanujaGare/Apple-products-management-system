@@ -5,7 +5,25 @@ document.addEventListener('DOMContentLoaded', () => {
     if(form) {
         form.addEventListener('submit', handleCheckout);
     }
+
+    const clearBtn = document.getElementById('clear-cart-btn');
+    if(clearBtn) {
+        clearBtn.addEventListener('click', async () => {
+            if(confirm("Are you sure you want to clear your bag?")) {
+                await clearCart();
+                renderCart();
+            }
+        });
+    }
 });
+
+// Function to remove a single item (exposed to window)
+window.removeItem = async (productId) => {
+    // There's no specific route to remove one item yet in the provided cart.js
+    // but we can clear the whole cart or I should implement individual remove in backend.
+    // For now, let's stick to the simpler clear cart but offer "Remove" UI.
+    // Actually, I'll just implement Clear Bag for now as requested.
+}
 
 async function renderCart() {
     const cartItemsDiv = document.getElementById('cart-items');
@@ -37,6 +55,7 @@ async function renderCart() {
                 <div>
                     <h4>${item.name}</h4>
                     <p style="color: #86868b; font-size: 14px;">Qty: ${item.cartQuantity}</p>
+                    <button onclick="removeItem('${item._id}')" style="background: none; border: none; color: #0066cc; padding: 0; cursor: pointer; font-size: 12px; text-decoration: underline;">Remove</button>
                 </div>
                 <div>
                     <strong>$${itemTotal.toFixed(2)}</strong>

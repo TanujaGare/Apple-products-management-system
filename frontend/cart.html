@@ -26,7 +26,10 @@
             <div class="cart-items-container" style="flex: 2;">
                 <!-- Cart items list -->
                 <div id="cart-items"></div>
-                <h3 style="margin-top: 20px; text-align: right;">Total: $<span id="cart-total">0.00</span></h3>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+                    <button id="clear-cart-btn" class="btn-secondary" style="background: #f5f5f7; color: #ff3b30; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: 500;">Clear Bag</button>
+                    <h3 style="margin: 0;">Total: $<span id="cart-total">0.00</span></h3>
+                </div>
             </div>
             
             <div class="checkout-form" style="flex: 1; padding: 30px; background: #fbfbfd; border-radius: 18px;">

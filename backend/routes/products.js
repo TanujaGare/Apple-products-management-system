@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Product = require('../models/Product');
+const { protect, admin } = require('../middleware/authMiddleware');
 
 // GET all products (with optional filtering and search)
 router.get('/', async (req, res) => {
@@ -37,7 +38,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // POST add a new product
-router.post('/', async (req, res) => {
+router.post('/', protect, admin, async (req, res) => {
     try {
         const newProduct = new Product(req.body);
         const savedProduct = await newProduct.save();
@@ -48,7 +49,7 @@ router.post('/', async (req, res) => {
 });
 
 // PUT update a product
-router.put('/:id', async (req, res) => {
+router.put('/:id', protect, admin, async (req, res) => {
     try {
         const updatedProduct = await Product.findByIdAndUpdate(
             req.params.id, 
@@ -63,7 +64,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // DELETE a product
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', protect, admin, async (req, res) => {
     try {
         const deletedProduct = await Product.findByIdAndDelete(req.params.id);
         if (!deletedProduct) return res.status(404).json({ message: 'Product not found' });

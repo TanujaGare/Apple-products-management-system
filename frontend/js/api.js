@@ -9,26 +9,38 @@ async function fetchProducts(queryParams = '') {
 }
 
 async function createProduct(productData) {
+    const token = localStorage.getItem('token');
     const res = await fetch(`${API_URL}/products`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
         body: JSON.stringify(productData)
     });
     return res.json();
 }
 
 async function updateProduct(id, productData) {
+    const token = localStorage.getItem('token');
     const res = await fetch(`${API_URL}/products/${id}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
         body: JSON.stringify(productData)
     });
     return res.json();
 }
 
 async function deleteProduct(id) {
+    const token = localStorage.getItem('token');
     const res = await fetch(`${API_URL}/products/${id}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
     });
     return res.json();
 }
@@ -118,6 +130,17 @@ async function clearCart() {
         await updateCartCount();
     } catch (err) {
         console.error("Error clearing cart:", err);
+    }
+}
+
+async function removeFromCart(productId) {
+    try {
+        await fetch(`${API_URL}/cart/remove/${cartSessionId}?productId=${productId}`, {
+            method: 'DELETE'
+        });
+        await updateCartCount();
+    } catch (err) {
+        console.error("Error removing from cart:", err);
     }
 }
 
