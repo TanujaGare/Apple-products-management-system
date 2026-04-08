@@ -105,9 +105,14 @@ window.editProduct = (p) => {
 
 window.removeProduct = async (id) => {
     if(confirm("Are you sure you want to delete this product?")) {
-        await deleteProduct(id);
-        loadInventory();
-        checkLowStock();
+        try {
+            await deleteProduct(id);
+            alert("Product deleted successfully!");
+            loadInventory();
+            checkLowStock();
+        } catch (err) {
+            alert("Error deleting product: " + err.message);
+        }
     }
 };
 
@@ -123,15 +128,21 @@ async function handleFormSubmit(e) {
         description: document.getElementById('prod-description').value
     };
 
-    if (id) {
-        await updateProduct(id, productData);
-    } else {
-        await createProduct(productData);
-    }
+    try {
+        if (id) {
+            await updateProduct(id, productData);
+            alert("Product updated successfully!");
+        } else {
+            await createProduct(productData);
+            alert("Product created successfully!");
+        }
 
-    document.getElementById('product-modal').style.display = 'none';
-    loadInventory();
-    checkLowStock();
+        document.getElementById('product-modal').style.display = 'none';
+        loadInventory();
+        checkLowStock();
+    } catch (err) {
+        alert("Operation failed: " + err.message);
+    }
 }
 
 async function loadOrders() {
@@ -140,7 +151,7 @@ async function loadOrders() {
     tbody.innerHTML = '<tr><td colspan="6">Loading...</td></tr>';
     
     try {
-        const res = await fetch('http://localhost:5000/api/orders', {
+        const res = await fetch(`${API_URL}/orders`, {
             headers: { ...Auth.getAuthHeader() }
         });
         const orders = await res.json();
@@ -174,7 +185,7 @@ async function loadOrders() {
 
 window.updateOrderStatus = async (id, status) => {
     try {
-        const res = await fetch(`http://localhost:5000/api/orders/${id}`, {
+        const res = await fetch(`${API_URL}/orders/${id}`, {
             method: 'PUT',
             headers: { 
                 'Content-Type': 'application/json',

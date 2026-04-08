@@ -1,4 +1,6 @@
-const AUTH_API = 'http://localhost:5000/api/auth';
+const AUTH_API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+    ? 'http://localhost:5000/api/auth' 
+    : 'https://apple-products-management-system.onrender.com/api/auth';
 
 const Auth = {
     // Save user data and token to localStorage

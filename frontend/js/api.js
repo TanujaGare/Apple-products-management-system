@@ -18,7 +18,9 @@ async function createProduct(productData) {
         },
         body: JSON.stringify(productData)
     });
-    return res.json();
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.message || data.error || "Failed to create product");
+    return data;
 }
 
 async function updateProduct(id, productData) {
@@ -31,7 +33,9 @@ async function updateProduct(id, productData) {
         },
         body: JSON.stringify(productData)
     });
-    return res.json();
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.message || data.error || "Failed to update product");
+    return data;
 }
 
 async function deleteProduct(id) {
@@ -42,7 +46,9 @@ async function deleteProduct(id) {
             'Authorization': `Bearer ${token}`
         }
     });
-    return res.json();
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.message || data.error || "Failed to delete product");
+    return data;
 }
 
 // Order APIs
